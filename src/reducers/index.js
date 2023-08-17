@@ -22,6 +22,13 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 heroesLoadingStatus: 'error'
             }
+        case 'HERO_REMOVED':
+            const updatedHeroes = state.heroes.filter(hero => hero.id !== action.payload) 
+            console.log(action.payload);
+            return {
+                ...state,
+                heroes: updatedHeroes
+            }
         default: return state
     }
 }
