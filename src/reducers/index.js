@@ -24,10 +24,14 @@ const reducer = (state = initialState, action) => {
             }
         case 'HERO_REMOVED':
             const updatedHeroes = state.heroes.filter(hero => hero.id !== action.payload) 
-            console.log(action.payload);
             return {
                 ...state,
                 heroes: updatedHeroes
+            }
+        case 'HERO_ADDED':
+            return{
+                ...state,
+                heroes: [...state.heroes, action.payload]
             }
         default: return state
     }

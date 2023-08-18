@@ -21,7 +21,6 @@ const HeroesList = () => {
         request("http://localhost:3001/heroes")
             .then(data => dispatch(heroesFetched(data)))
             .catch(() => dispatch(heroesFetchingError()))
-
         // eslint-disable-next-line
     }, []);
 
@@ -32,7 +31,6 @@ const HeroesList = () => {
     }
 
     const handleRemoveHero = (id) => {
-        console.log(id);
         dispatch(heroRemoved(id))
     }
 
@@ -40,10 +38,10 @@ const HeroesList = () => {
         if (arr.length === 0) {
             return <h5 className="text-center mt-5">Героев пока нет</h5>
         }
-        return arr.map(({id, ...props}) => {
-            
+        return arr.map(({id, ...props}) => { 
             return <HeroesListItem key={id} {...props} onRemove={() => handleRemoveHero(id)}/>
         })
+        
     }
 
     const elements = renderHeroesList(heroes);
