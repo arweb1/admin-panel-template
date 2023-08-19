@@ -4,9 +4,19 @@
 // Фильтры должны отображать только нужных героев при выборе
 // Активный фильтр имеет класс active
 // Изменять json-файл для удобства МОЖНО!
-// Представьте, что вы попросили бэкенд-разработчика об этом
 
+import { useHttp } from "../../hooks/http.hook";
+import { useEffect } from "react";
+
+// Представьте, что вы попросили бэкенд-разработчика об этом
 const HeroesFilters = () => {
+    const { request } = useHttp()
+    
+    useEffect(() => {
+        request('http://localhost:3001/filters')
+            .then(res => console.log(res))
+    }, [])
+
     return (
         <div className="card shadow-lg mt-4">
             <div className="card-body">

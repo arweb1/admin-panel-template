@@ -25,7 +25,6 @@ export const heroRemoved = (id) => {
 }
 
 export const addHero = (hero) => {
-    console.log(hero);
     return {
         type: 'HERO_ADDED',
         payload: hero
