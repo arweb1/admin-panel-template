@@ -1,4 +1,4 @@
-
+import { useDispatch } from "react-redux";
 // Задача для этого компонента:
 // Фильтры должны формироваться на основании загруженных данных
 // Фильтры должны отображать только нужных героев при выборе
@@ -10,6 +10,7 @@ import { useEffect } from "react";
 
 // Представьте, что вы попросили бэкенд-разработчика об этом
 const HeroesFilters = () => {
+<<<<<<< HEAD
     const { request } = useHttp()
     
     useEffect(() => {
@@ -17,6 +18,10 @@ const HeroesFilters = () => {
             .then(res => console.log(res))
     }, [])
 
+=======
+
+    //Filter started
+>>>>>>> b1988e24746fae7df827cc843d98534a64251d66
     return (
         <div className="card shadow-lg mt-4">
             <div className="card-body">
