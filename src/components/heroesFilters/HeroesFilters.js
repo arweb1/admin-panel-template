@@ -15,7 +15,7 @@ import Spinner from '../spinner/Spinner'
 const HeroesFilters = () => {
     const dispatch = useDispatch()
     const {request} = useHttp()
-    const {filters, filterLoadingItems, activeFilter} = useSelector(state => state)
+    const {filters, filterLoadingItems, activeFilter} = useSelector(state => state.filters)
     useEffect(() => {
         dispatch(filtersFetching())
         request('http://localhost:3001/filters')
