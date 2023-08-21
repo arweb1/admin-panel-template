@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+
 // Задача для этого компонента:
 // Фильтры должны формироваться на основании загруженных данных
 // Фильтры должны отображать только нужных героев при выборе
@@ -7,31 +7,52 @@ import { useDispatch } from "react-redux";
 
 import { useHttp } from "../../hooks/http.hook";
 import { useEffect } from "react";
-
+import { useSelector, useDispatch } from "react-redux";
+import classNames from 'classnames'
+import { filtersFetching, filtersFetched, filtersFetchError, filterActiveChange } from "../../actions"; 
+import Spinner from '../spinner/Spinner'
 // Представьте, что вы попросили бэкенд-разработчика об этом
 const HeroesFilters = () => {
-<<<<<<< HEAD
-    const { request } = useHttp()
-    
+    const dispatch = useDispatch()
+    const {request} = useHttp()
+    const {filters, filterLoadingItems, activeFilter} = useSelector(state => state)
     useEffect(() => {
+        dispatch(filtersFetching())
         request('http://localhost:3001/filters')
-            .then(res => console.log(res))
+            .then(data => dispatch(filtersFetched(data)))
+            .catch(filtersFetchError())
     }, [])
 
-=======
-
-    //Filter started
->>>>>>> b1988e24746fae7df827cc843d98534a64251d66
+    useEffect(() => {
+        console.log(activeFilter);
+    }, [activeFilter])
+    if(filterLoadingItems === 'loading'){
+        return <Spinner/>
+    }else if(filterLoadingItems === 'error'){
+        return <h5>Ошибка загрузки данных о фильтре</h5>
+    }
+    const renderItems = (arr) => {
+        return arr.map(({name, className, label}) => {
+            const btnClass = classNames('btn', className, {
+                'active': name === activeFilter
+            });
+            
+            return <button
+                    className={btnClass}
+                    key={name}
+                    id={name}
+                    onClick={() => dispatch(filterActiveChange(name))}
+                    >{label}</button>
+        })
+    }
+    
+    const items = renderItems(filters)
     return (
         <div className="card shadow-lg mt-4">
             <div className="card-body">
                 <p className="card-text">Отфильтруйте героев по элементам</p>
                 <div className="btn-group">
-                    <button className="btn btn-outline-dark active">Все</button>
-                    <button className="btn btn-danger">Огонь</button>
-                    <button className="btn btn-primary">Вода</button>
-                    <button className="btn btn-success">Ветер</button>
-                    <button className="btn btn-secondary">Земля</button>
+                    {items}
                 </div>
             </div>
         </div>
