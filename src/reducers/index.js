@@ -19,8 +19,8 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 heroes: action.payload,
                 filteredHeroes: state.activeFilter === 'all' ? 
-                            state.heroes : 
-                            state.heroes.filter(hero => hero.element === state.activeFilter),
+                                action.payload : 
+                                action.payload.filter(hero => hero.element === state.activeFilter),
                 heroesLoadingStatus: 'idle'
             }
         case 'HEROES_FETCHING_ERROR':
@@ -32,12 +32,19 @@ const reducer = (state = initialState, action) => {
             const updatedHeroes = state.heroes.filter(hero => hero.id !== action.payload) 
             return {
                 ...state,
-                heroes: updatedHeroes
+                heroes: updatedHeroes,
+                filteredHeroes: state.activeFilter === 'all' ? 
+                                updatedHeroes : 
+                                updatedHeroes.filter(hero => hero.element === state.activeFilter),
             }
         case 'HERO_ADDED':
+            let newCreatedHeroList = [...state.heroes, action.payload]
             return{
                 ...state,
-                heroes: [...state.heroes, action.payload]
+                heroes: newCreatedHeroList,
+                filteredHeroes: state.activeFilter === 'all' ? 
+                                newCreatedHeroList : 
+                                newCreatedHeroList.filter(hero => hero.element === state.activeFilter),
             }
         case 'FILTERS_FETCHING': 
             return{

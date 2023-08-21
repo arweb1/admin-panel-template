@@ -22,10 +22,6 @@ const HeroesFilters = () => {
             .then(data => dispatch(filtersFetched(data)))
             .catch(filtersFetchError())
     }, [])
-
-    useEffect(() => {
-        console.log(activeFilter);
-    }, [activeFilter])
     if(filterLoadingItems === 'loading'){
         return <Spinner/>
     }else if(filterLoadingItems === 'error'){
