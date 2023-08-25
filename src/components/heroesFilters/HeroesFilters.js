@@ -25,7 +25,7 @@ const HeroesFilters = () => {
     if (filterLoadingItems === 'loading') {
         return <Spinner />
     } else if (filterLoadingItems === 'error') {
-        return <h5>Ошибка загрузки данных о фильтре</h5>
+        return <h5>Ошибка загрузки данных о фильтрах</h5>
     }
     const renderItems = (arr) => {
         return arr.map(({ name, className, label }) => {
