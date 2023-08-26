@@ -53,7 +53,8 @@ const HeroesList = (props) => {
         return arr.map(({id, ...props}) => { 
             return <HeroesListItem key={id} {...props} onRemove={() => handleRemoveHero(id)}/>
         })
-    }
+    } 
+    //
     const elements = renderHeroesList(filteredHeroes);
     return (
         <ul>
