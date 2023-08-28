@@ -1,4 +1,3 @@
-
 const HeroesListItem = ({name, description, element, onRemove}) => {
     let elementClassName;
 
