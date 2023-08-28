@@ -32,7 +32,7 @@ const heroes = (state = initialState, action) => {
                 heroes: [...state.heroes, action.payload]
             }
         default: return state
-    }
+    }//some text
 }
 
 export default heroes
